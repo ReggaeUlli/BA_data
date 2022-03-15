@@ -17,6 +17,8 @@ file "currentFlow" is the latest version of the used Node-Red Flows containing f
 idealy only flow "printer AAS" needs to be modified to use this implementation for other applications
 
 # Install
+  
+  ## install and run minio and node-red
   on a arm system with linux operating system and docker installed:
     
   create the docker volumes for persistent data
@@ -48,8 +50,23 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
    
     <ip of host>:9000
     
-   laod example flows from the flows.json file
+   laod example flows from the flows.json file and fit for your usecase
+   
+   ## install and run python script for camera pictures:
+      
+   install python
     
+    sudo apt-get install python
+    
+   install pip
+   
+    sudo apt-get install pip
+    
+   install OpenCV and socket
+   
+   
+   when downloaded the repo as mentioned above just run the
+      
 # Notice:
     
    - you may need to run the docker commands as sudo
