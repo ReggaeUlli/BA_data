@@ -50,7 +50,7 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
     
    laod example flows from the flows.json file
     
-   Notice:
+#Notice:
     
    - you may need to run the docker commands as sudo
    - after changing the nodered docker file you may need to run the following once before starting the containers again in order to rebuild them
