@@ -40,6 +40,15 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
    
     docker-compose up
     
+   access node red via 
+   
+    <ip of host>:1880
+   
+   access minio via
+   
+    <ip of host>:9000
+    
+   laod example flows from the flows.json file
     
    Notice:
     
