@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   nodered:
-    build: node-red/.
+    build: .
     ports:
       - "1880:1880"
       - "2000:2000"
