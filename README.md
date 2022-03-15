@@ -41,4 +41,9 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
     docker-compose up
     
     
-   NOTICE:  you may need to run the docker commands as sudo
+   Notice:
+    - you may need to run the docker commands as sudo
+    - after changing the nodered docker file you may need to run the following once before starting the containers again in order to rebuild them
+      
+      docker-compose build
+      
