@@ -34,7 +34,7 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
   
   change directory
     
-    cd lokale_Organisation_von_Produktionsdaten-main/Code
+    cd lokale_Organisation_von_Produktionsdaten-main/docker
    
    start
    
