@@ -21,9 +21,9 @@ services:
     restart: always
 volumes:
   node-red_data:
-        external: true
+    external: true
   minio_data:
-        external: true
+    external: true
 networks:
     default:
         external:
