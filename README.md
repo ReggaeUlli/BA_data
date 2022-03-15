@@ -19,7 +19,7 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
 # Install
   on a arm system with linux operating system and docker installed:
     
-  create the docker volumes for persistant data
+  create the docker volumes for persistent data
   
     docker volume create minio_data
     docker volume create node-red_data
