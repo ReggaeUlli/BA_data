@@ -16,7 +16,7 @@ file "currentFlow" is the latest version of the used Node-Red Flows containing f
 
 idealy only flow "printer AAS" needs to be modified to use this implementation for other applications
 
-#installing
+# Install
   on a arm system with linux operating system and docker installed:
     
   create the docker volumes for persistant data
