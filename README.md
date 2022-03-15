@@ -56,21 +56,30 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
       
    install python
     
-    sudo apt-get install python
+    apt-get install python
     
    install pip
    
-    sudo apt-get install pip
+    apt-get install pip
+   
+   install socket package
+   
+    pip install socket
+   
+   install OpenCV 
+   
+    pip install pip opencv-contrib-python
+   
+   run the camera stream script by navigating to the directory of the repo and running
     
-   install OpenCV and socket
-   
-   
-   when downloaded the repo as mentioned above just run the
+    python camera_stream.py
       
 # Notice:
     
-   - you may need to run the docker commands as sudo
-   - after changing the nodered docker file you may need to run the following once before starting the containers again in order to rebuild them
-      
+   - you may need to run the docker and apt-get commands as sudo
+   - after changing the nodered docker file you may need to run the following once before starting the containers again in order to rebuild them by:
+
     docker-compose build
+  
+   - if installing opencv on the pi leads to problems follow: https://raspberrypi-guide.github.io/programming/install-opencv
       
