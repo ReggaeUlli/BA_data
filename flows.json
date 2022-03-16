@@ -3687,8 +3687,7 @@
         "y": 400,
         "wires": [
             [
-                "ad1c253091248785",
-                "fa59ab171230b753"
+                "ad1c253091248785"
             ]
         ]
     },
@@ -3922,7 +3921,7 @@
         "type": "function",
         "z": "62c7a64d600c50a0",
         "name": "get start and end time of every product",
-        "func": "function createProduct(msg){\n    product = {}\n    product.startTime = msg.metaData[\"X-Amz-Meta-Time\"]\n    product.id = msg.metaData[\"X-Amz-Meta-Productid\"]\n    product.file = msg.payload.objectData.job.file\n    product.estimatedPrintTime = msg.payload.objectData.job.estimatedPrintTime\n    product.filament = msg.payload.objectData.job.filament\n    return product;\n}\n\nproduct = flow.get(\"product\")\nmsg.payload.objectData = JSON.parse(msg.payload.objectData)\nproductMsg = undefined\n\n//check if its still the same product or the next one\n//if its the first product create a new one\nif (product === undefined){\n    product = createProduct(msg)\n//if its the same product just adjust the endtime\n}else if ( msg.metaData[\"X-Amz-Meta-Productid\"]== product.id){\n    product.endTime = msg.metaData[\"X-Amz-Meta-Time\"]\n//if its a new product\n}else{\n    //prepare static info msg \"productMsg\" for old product\n    productMsg = {payload: product};\n    \n    //create new product\n    createProduct(msg)\n}\n\n//safe current product object\nflow.set(\"product\", product)\n\n//remove static info from jobstate\n//progress = msg.payload.objectData.job.progress;\n//state = msg.payload.objectData.job.progress;\nmsg.payload =   {  \n                    objectData: {\n                            job: {\n                                progress: msg.payload.objectData.progress,\n                                state: msg.payload.objectData.state\n                            }\n                    }\n                }\n                \n//return jobinfo\nif(productMsg === undefined){\n    return [msg, null]\n//or if the next Product started jobinfo and the static info msg\n}else{\n    node.status({fill:\"green\",shape:\"dot\",text:\"product \" + productMsg.payload.id});\n    return [msg, productMsg];    \n}",
+        "func": "function createProduct(msg){\n    product = {}\n    product.startTime = msg.metaData[\"X-Amz-Meta-Time\"]\n    product.id = msg.metaData[\"X-Amz-Meta-Productid\"]\n    product.file = msg.payload.objectData.job.file\n    product.estimatedPrintTime = msg.payload.objectData.job.estimatedPrintTime\n    product.filament = msg.payload.objectData.job.filament\n    return product;\n}\n\nproduct = flow.get(\"product\")\nmsg.payload.objectData = JSON.parse(msg.payload.objectData)\nproductMsg = undefined\n\n//check if its still the same product or the next one\n//if its the first product create a new one\nif (product === undefined){\n    product = createProduct(msg)\n//if its the same product just adjust the endtime\n}else if ( msg.metaData[\"X-Amz-Meta-Productid\"]== product.id){\n    product.endTime = msg.metaData[\"X-Amz-Meta-Time\"]\n//if its a new product\n}else{\n    //prepare static info msg \"productMsg\" for old product\n    productMsg = {payload: product};\n    \n    //create new product\n    product = createProduct(msg)\n}\n\n//safe current product object\nflow.set(\"product\", product)\n\n//remove static info from jobstate\n//progress = msg.payload.objectData.job.progress;\n//state = msg.payload.objectData.job.progress;\nmsg.payload =   {  \n                    objectData: {\n                            job: {\n                                progress: msg.payload.objectData.progress,\n                                state: msg.payload.objectData.state\n                            }\n                    }\n                }\n                \n//return jobinfo\nif(productMsg === undefined){\n    return [msg, null]\n//or if the next Product started jobinfo and the static info msg\n}else{\n    node.status({fill:\"green\",shape:\"dot\",text:\"product \" + productMsg.payload.id});\n    return [msg, productMsg];    \n}",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -3996,6 +3995,11 @@
                 "name": "prefix (optional)",
                 "value": "jobState/",
                 "type": "str"
+            },
+            {
+                "name": "objectLimit",
+                "value": "2000",
+                "type": "num"
             }
         ],
         "x": 430,
@@ -4010,7 +4014,6 @@
         "id": "ad1c253091248785",
         "type": "subflow:6512d1243c95da39",
         "z": "62c7a64d600c50a0",
-        "d": true,
         "name": "get Products",
         "env": [
             {
@@ -4052,6 +4055,11 @@
                 "name": "prefix (optional)",
                 "value": "printerState/",
                 "type": "str"
+            },
+            {
+                "name": "objectLimit",
+                "value": "1000",
+                "type": "num"
             }
         ],
         "x": 820,
@@ -4077,6 +4085,11 @@
                 "name": "prefix (optional)",
                 "value": "camera/",
                 "type": "str"
+            },
+            {
+                "name": "objectLimit",
+                "value": "1000",
+                "type": "num"
             }
         ],
         "x": 830,
@@ -4281,7 +4294,7 @@
                 "type": "bool"
             }
         ],
-        "x": 1510,
+        "x": 1530,
         "y": 740,
         "wires": [
             [
@@ -4488,7 +4501,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 660,
+        "x": 650,
         "y": 80,
         "wires": [
             [
@@ -4591,7 +4604,7 @@
         "y": 900,
         "wires": [
             [
-                "4a3e11b22d1cd265"
+                "81d1fcdb6bc8ea7c"
             ]
         ]
     },
@@ -5106,7 +5119,7 @@
         "z": "62c7a64d600c50a0",
         "name": "populate diamond chargewise",
         "info": "",
-        "x": 180,
+        "x": 140,
         "y": 1520,
         "wires": []
     },
@@ -5206,7 +5219,9 @@
         "x": 2980,
         "y": 1560,
         "wires": [
-            []
+            [
+                "bbdcebfc28eede5e"
+            ]
         ]
     },
     {
@@ -5511,7 +5526,7 @@
         "z": "62c7a64d600c50a0",
         "name": "combine dynamic values per charge",
         "info": "",
-        "x": 200,
+        "x": 160,
         "y": 1780,
         "wires": []
     },
@@ -5800,8 +5815,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 3130,
-        "y": 1740,
+        "x": 3330,
+        "y": 1580,
         "wires": []
     },
     {
@@ -6027,31 +6042,6 @@
         ]
     },
     {
-        "id": "fa59ab171230b753",
-        "type": "subflow:3a260a06b328d68c",
-        "z": "62c7a64d600c50a0",
-        "name": "get all products",
-        "env": [
-            {
-                "name": "bucketName",
-                "value": "silver-zone",
-                "type": "str"
-            },
-            {
-                "name": "sufix (optional)",
-                "value": "static/staticInfo.json",
-                "type": "str"
-            }
-        ],
-        "x": 340,
-        "y": 360,
-        "wires": [
-            [
-                "ad4d8c922e73515d"
-            ]
-        ]
-    },
-    {
         "id": "6aca285b2c4cc887",
         "type": "inject",
         "z": "62c7a64d600c50a0",
@@ -6059,7 +6049,7 @@
         "props": [
             {
                 "p": "payload.prefix",
-                "v": "4/",
+                "v": "6/",
                 "vt": "str"
             }
         ],
@@ -6073,6 +6063,155 @@
         "wires": [
             [
                 "26605f52b199ff94"
+            ]
+        ]
+    },
+    {
+        "id": "07f1c56cee6c6bdf",
+        "type": "subflow:6512d1243c95da39",
+        "z": "62c7a64d600c50a0",
+        "name": "",
+        "env": [
+            {
+                "name": "bucketName",
+                "value": "gold-zone",
+                "type": "str"
+            },
+            {
+                "name": "prefix (optional)",
+                "value": "1/static",
+                "type": "str"
+            },
+            {
+                "name": "startAfter",
+                "value": "false",
+                "type": "bool"
+            }
+        ],
+        "x": 1410,
+        "y": 1340,
+        "wires": [
+            [
+                "5c28e43597301165",
+                "008cc7860b3506bc"
+            ]
+        ]
+    },
+    {
+        "id": "ceedbc23fa8a2d6c",
+        "type": "inject",
+        "z": "62c7a64d600c50a0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 1130,
+        "y": 1340,
+        "wires": [
+            [
+                "07f1c56cee6c6bdf"
+            ]
+        ]
+    },
+    {
+        "id": "5c28e43597301165",
+        "type": "function",
+        "z": "62c7a64d600c50a0",
+        "name": "",
+        "func": "msg.stream = msg.payload.objectData\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1680,
+        "y": 1340,
+        "wires": [
+            [
+                "760b5cea3d9b6c69"
+            ]
+        ]
+    },
+    {
+        "id": "760b5cea3d9b6c69",
+        "type": "objects",
+        "z": "62c7a64d600c50a0",
+        "d": true,
+        "objects_name": "",
+        "host": "dca656d872d7df8d",
+        "objects_operation": "putObject",
+        "objects_bucket": "gold-zone",
+        "objects_object": "1/staticInfo.json",
+        "objects_offset": "",
+        "objects_length": "",
+        "objects_stream": "",
+        "objects_size": "",
+        "objects_metadata": "",
+        "objects_sourceobject": "",
+        "objects_conditions": "",
+        "objects_objectslist": [],
+        "objects_prefix": "",
+        "objects_etag": "",
+        "objects_datetime": "",
+        "x": 1890,
+        "y": 1340,
+        "wires": [
+            [
+                "008cc7860b3506bc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "008cc7860b3506bc",
+        "type": "debug",
+        "z": "62c7a64d600c50a0",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1850,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "81d1fcdb6bc8ea7c",
+        "type": "delay",
+        "z": "62c7a64d600c50a0",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "5",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2110,
+        "y": 900,
+        "wires": [
+            [
+                "4a3e11b22d1cd265"
             ]
         ]
     },
@@ -7641,6 +7780,7 @@
         "id": "938d5d4e691b5042",
         "type": "ui_template",
         "z": "0444163adfe0ff05",
+        "d": true,
         "group": "5a732573ea65dbbc",
         "name": "",
         "order": 5,
