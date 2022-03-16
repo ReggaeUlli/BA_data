@@ -85,6 +85,7 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
    
    run the camera stream script by navigating to the directory of the repo and running
     
+    sudo service webcamd stop
     python camera_stream.py
       
 # Notice:
