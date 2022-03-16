@@ -1,7 +1,7 @@
 # BA_data
 Code and Data regarding my Bachelor Thesis with the title "Local management of historic production data of a 3D-Printer"
 
-A local data storage for a 3D printer is build based on the data lake concept. 
+A local data storage for a 3D printer is build based on the data lake concept. It uses octopi for the data access of the 3D-printer, a python script capture the camera frames, minio as data storage and node-red to create the data pipelines and Interfaces. 
 
 - directory "docker" contains the docker files to start node red and minio 
 - file "stream.py" which contains the python camera script
