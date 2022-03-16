@@ -8,14 +8,14 @@ A local data storage for a 3D printer is build based on the data lake concept. I
 - file "exampleFlow.json" which contains the node-red flows for the given example application 
 - diretory "Benchmark tests" contains the gcode files and pictures of the results regarding the benchmark tests.
 
-file "exampleFlow.json" is the latest version of the used Node-Red Flows containing following flows:
+The "exampleFlow"-File contains following flows:
   - "emulated Printer" which emulates printer data for test purposes
   - "printer AAS" which combines the data from octopi and the camera and communicates with the datalake
   - "datalake AAS" which handles the incoming data and puts it into the data lake
   - "transformations" which handles the transformations done inside the data lake
   - "dashboard" which creates the dashboard
 
-idealy only flow "printer AAS" needs to be modified to use this implementation for other applications
+in theory only flow "printer AAS" needs to be modified to use this implementation for other applications
 
 # Install
   ## Install octopi
