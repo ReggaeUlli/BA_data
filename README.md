@@ -17,9 +17,22 @@ file "currentFlow" is the latest version of the used Node-Red Flows containing f
 idealy only flow "printer AAS" needs to be modified to use this implementation for other applications
 
 # Install
+  ##install octopi
   
-  ## install and run minio and node-red
-  on a arm system with linux operating system and docker installed:
+  install the octopi image on an SD following the offical guide: https://octoprint.org/download/
+  
+  ## install minio and node-red
+  
+  on a arm system with linux operating system (for example the octopi image mentioned above):
+  
+  install docker
+  
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    ‍Sudo sh get-docker.sh
+    sudo apt-get install libffi-dev libssl-dev
+    sudo apt install python3-dev
+    sudo apt-get install -y python3 python3-pip
+    sudo pip3 install docker-compose
     
   create the docker volumes for persistent data
   
@@ -52,7 +65,7 @@ idealy only flow "printer AAS" needs to be modified to use this implementation f
     
    laod example flows from the flows.json file and fit for your usecase
    
-   ## install and run python script for camera pictures:
+   ## install the python script for camera pictures:
       
    install python
     
