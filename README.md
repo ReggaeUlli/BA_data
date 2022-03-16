@@ -17,7 +17,7 @@ file "currentFlow" is the latest version of the used Node-Red Flows containing f
 idealy only flow "printer AAS" needs to be modified to use this implementation for other applications
 
 # Install
-  ##install octopi
+  ## Install octopi
   
   install the octopi image on an SD following the offical guide: https://octoprint.org/download/
   
