@@ -45,15 +45,15 @@ In theory only flow "printer AAS" needs to be modified to use this implementatio
   
   Download this repo:
   
-    wget https://github.com/ReggaeUlli/lokale_Organisation_von_Produktionsdaten/archive/refs/heads/main.zip
+    wget https://github.com/ReggaeUlli/historic_production_data/archive/refs/heads/main.zip
   
   unzip
     
-    unzip master.zip
+    unzip main.zip
   
   change directory
     
-    cd lokale_Organisation_von_Produktionsdaten-main/docker
+    cd historic_production_data-main/docker
    
    start
    
