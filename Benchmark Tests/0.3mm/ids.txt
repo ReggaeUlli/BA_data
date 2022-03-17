@@ -1,3 +1,0 @@
-charge 1
-products 1, 2
-wechsel pipapo 15:45
